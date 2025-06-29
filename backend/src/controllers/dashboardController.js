@@ -1,11 +1,11 @@
 const {
+  Asset,
+  Assignment,
+  User,
+  Base,
   Purchase,
   Transfer,
-  Assignment,
-  Asset,
-  Base,
-  User,
-} = require("../models/associations-sqlite");
+} = require("../models/associations");
 const { Op } = require("sequelize");
 
 // Get dashboard metrics

@@ -1,4 +1,4 @@
-const { Base } = require("../models/associations-sqlite");
+const { Base } = require("../models/associations");
 
 // Get all bases
 const getBases = async (req, res) => {

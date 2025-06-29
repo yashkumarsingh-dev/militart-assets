@@ -1,5 +1,5 @@
-const { Transfer, Asset, Base } = require("../models/associations-sqlite");
-const { sequelize } = require("../models/index-sqlite");
+const { Transfer, Asset, Base } = require("../models/associations");
+const { sequelize } = require("../models/index");
 const { Op } = require("sequelize");
 
 // Create new transfer

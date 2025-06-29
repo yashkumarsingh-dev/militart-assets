@@ -1,4 +1,4 @@
-const { sequelize } = require("./models/index-sqlite");
+const { sequelize } = require("./models/index");
 const models = require("./models/associations");
 
 // console.log("Starting local database sync...");

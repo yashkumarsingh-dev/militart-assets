@@ -1,9 +1,4 @@
-const {
-  Assignment,
-  Asset,
-  User,
-  Base,
-} = require("../models/associations-sqlite");
+const { Assignment, Asset, User, Base } = require("../models/associations");
 const { Op } = require("sequelize");
 
 // Assign asset to personnel

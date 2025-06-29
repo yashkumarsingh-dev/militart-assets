@@ -1,4 +1,4 @@
-const { Log, User } = require("../models/associations-sqlite");
+const { Log, User } = require("../models/associations");
 
 // Log API transaction middleware
 const logTransaction = async (req, res, next) => {

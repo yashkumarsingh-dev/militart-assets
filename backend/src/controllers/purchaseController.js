@@ -1,4 +1,4 @@
-const { Purchase, Base, Asset } = require("../models/associations-sqlite");
+const { Purchase, Base, Asset } = require("../models/associations");
 const { Op } = require("sequelize");
 
 // Create new purchase

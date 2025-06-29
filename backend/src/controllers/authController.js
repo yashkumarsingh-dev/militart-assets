@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User, Base } = require("../models/associations-sqlite");
-const { sequelize } = require("../models/index-sqlite");
+const { User, Base } = require("../models/associations");
+const { sequelize } = require("../models/index");
 
 // Register new user
 const register = async (req, res) => {
