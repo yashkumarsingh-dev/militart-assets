@@ -1,6 +1,6 @@
 import authUtils from "../utils/auth";
 
-const API_BASE_URL = "http://192.168.0.170:5000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 class ApiService {
   constructor() {
