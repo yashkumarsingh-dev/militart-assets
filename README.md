@@ -2,7 +2,7 @@
 
 ## 1. Project Overview
 
-Military is a modern asset management system designed for organizations requiring robust tracking of assets, assignments, purchases, transfers, and audit logs. The system features a responsive React (Vite) frontend, a secure Node.js/Express.js backend, and a PostgreSQL database.
+Military is a modern asset management system designed for organizations requiring robust tracking of assets, assignments, purchases, transfers, and audit logs. The system features a responsive React (Vite) frontend, a secure Node.js/Express.js backend, and a PostgreSQL databases.
 
 **Main Features:**
 
