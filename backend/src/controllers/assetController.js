@@ -140,6 +140,14 @@ const createAsset = async (req, res) => {
     });
   } catch (error) {
     console.error("Create asset error:", error);
+    if (
+      error.name === "SequelizeValidationError" ||
+      error.name === "SequelizeUniqueConstraintError"
+    ) {
+      return res
+        .status(400)
+        .json({ message: error.message, errors: error.errors });
+    }
     res.status(500).json({ message: "Internal server error" });
   }
 };
