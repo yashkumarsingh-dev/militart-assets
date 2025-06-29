@@ -1,5 +1,4 @@
-const { Asset, Base } = require("../models/associations");
-const { Assignment, User } = require("../models/associations-sqlite");
+const { Asset, Base, Assignment, User } = require("../models/associations");
 const { Op } = require("sequelize");
 
 // Get all assets with filters
