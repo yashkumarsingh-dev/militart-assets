@@ -79,7 +79,8 @@ const Assets = () => {
 
     // Map form data to backend format
     const assetData = {
-      description: form.name,
+      name: form.name,
+      description: form.description || "",
       type: form.category,
       status: form.status.toLowerCase(),
       serial_number: `${form.category.toUpperCase()}-${Date.now()}`,
