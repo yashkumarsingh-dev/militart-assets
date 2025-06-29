@@ -17,10 +17,9 @@ if (!databaseUrl) {
         envVars[key.trim()] = value.trim();
       }
     });
-    // console.log("Parsed envVars:", envVars);
+    
     databaseUrl = envVars.DATABASE_URL;
-    // console.log("Successfully read DATABASE_URL from .env file");
-    // console.log("DATABASE_URL value:", databaseUrl ? "SET" : "NOT SET");
+    
   } catch (error) {
     console.error("Could not read .env file:", error.message);
   }
@@ -30,7 +29,6 @@ if (!databaseUrl) {
   throw new Error("DATABASE_URL is not set. Please check your .env file.");
 }
 
-// console.log("Using DATABASE_URL:", databaseUrl.substring(0, 20) + "...");
 
 const sequelize = new Sequelize(databaseUrl, {
   dialect: "postgres",
