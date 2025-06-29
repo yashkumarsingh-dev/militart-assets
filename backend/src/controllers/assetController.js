@@ -108,7 +108,7 @@ const getAssetById = async (req, res) => {
 // Create new asset
 const createAsset = async (req, res) => {
   try {
-    const { description, type, serial_number, base_id, status, value } =
+    const { name, description, type, serial_number, base_id, status, value } =
       req.body;
     const userRole = req.user.role;
     const userBaseId = req.user.base_id;
@@ -120,6 +120,7 @@ const createAsset = async (req, res) => {
 
     // Create asset
     const asset = await Asset.create({
+      name,
       description,
       type,
       serial_number,
