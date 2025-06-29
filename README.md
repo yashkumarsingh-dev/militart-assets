@@ -217,7 +217,7 @@ This project is licensed under the MIT License.
 - [React](https://react.dev/)
 - [Express.js](https://expressjs.com/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [Sequelize](https://sequelize.org/) (if used)
+- [Sequelize](https://sequelize.org/) 
 - All contributors and open-source libraries used in this project.
 
 ---
