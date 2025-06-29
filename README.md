@@ -35,7 +35,7 @@ Military is a modern asset management system designed for organizations requirin
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yashkumarsingh-dev/militart-assets.git
+git clone https://github.com/yashkumarsingh-dev/military-assets.git
 cd kristalball
 ```
 
