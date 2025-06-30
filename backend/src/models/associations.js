@@ -23,8 +23,11 @@ Transfer.belongsTo(Base, { as: "toBase", foreignKey: "to_base_id" });
 
 Assignment.belongsTo(Asset, { foreignKey: "asset_id" });
 Asset.hasMany(Assignment, { foreignKey: "asset_id" });
-Assignment.belongsTo(User, { foreignKey: "personnel_id" });
-User.hasMany(Assignment, { foreignKey: "personnel_id" });
+Assignment.belongsTo(User, { foreignKey: "personnel_id", as: "Personnel" });
+User.hasMany(Assignment, {
+  foreignKey: "personnel_id",
+  as: "PersonnelAssignments",
+});
 
 Log.belongsTo(User, { foreignKey: "user_id" });
 User.hasMany(Log, { foreignKey: "user_id" });
