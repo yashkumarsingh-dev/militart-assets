@@ -6,11 +6,11 @@ const {
   Purchase,
   Transfer,
   Assignment,
-} = require("./models/associations-sqlite");
+} = require("./models/associations");
 
 const seedData = async () => {
   try {
-    // console.log("🌱 Starting database seeding...");
+    // console.log("Starting database seeding...");
 
     // Create bases
     const bases = await Base.bulkCreate([
@@ -19,7 +19,7 @@ const seedData = async () => {
       { name: "Charlie Base", location: "East Region" },
       { name: "Delta Base", location: "West Region" },
     ]);
-    // console.log("✅ Bases created:", bases.length);
+    // console.log(" Bases created:", bases.length);
 
     // Create users with hashed passwords
     const passwordHash = await bcrypt.hash("password123", 10);
@@ -74,7 +74,7 @@ const seedData = async () => {
         base_id: bases[1].id,
       },
     ]);
-    // console.log("✅ Users created:", users.length);
+    // console.log("Users created:", users.length);
 
     // Create assets
     const assets = await Asset.bulkCreate([
@@ -135,7 +135,7 @@ const seedData = async () => {
         status: "available",
       },
     ]);
-    // console.log("✅ Assets created:", assets.length);
+    // console.log("Assets created:", assets.length);
 
     // Create purchases
     const purchases = await Purchase.bulkCreate([
@@ -170,7 +170,7 @@ const seedData = async () => {
         date: new Date("2024-02-15"),
       },
     ]);
-    // console.log("✅ Purchases created:", purchases.length);
+    // console.log("Purchases created:", purchases.length);
 
     // Create transfers
     const transfers = await Transfer.bulkCreate([
@@ -196,7 +196,7 @@ const seedData = async () => {
         date: new Date("2024-03-01"),
       },
     ]);
-    // console.log("✅ Transfers created:", transfers.length);
+    // console.log("Transfers created:", transfers.length);
 
     // Create assignments
     const assignments = await Assignment.bulkCreate([
@@ -216,7 +216,7 @@ const seedData = async () => {
         assigned_at: new Date("2024-02-10"),
       },
     ]);
-    // console.log("✅ Assignments created:", assignments.length);
+    // console.log(" Assignments created:", assignments.length);
 
     // Update asset statuses for assigned assets
     await Asset.update(
@@ -224,8 +224,8 @@ const seedData = async () => {
       { where: { id: [assets[1].id, assets[3].id, assets[4].id] } }
     );
 
-    // console.log("🎉 Database seeding completed successfully!");
-    // console.log("\n📋 Sample Data Summary:");
+    // console.log(" Database seeding completed successfully!");
+    // console.log("\n Sample Data Summary:");
     // console.log(`- Bases: ${bases.length}`);
     // console.log(`- Users: ${users.length}`);
     // console.log(`- Assets: ${assets.length}`);
@@ -233,12 +233,12 @@ const seedData = async () => {
     // console.log(`- Transfers: ${transfers.length}`);
     // console.log(`- Assignments: ${assignments.length}`);
 
-    // console.log("\n🔑 Test Credentials:");
+    // console.log("\n Test Credentials:");
     // console.log("Admin: admin@military.com / password123");
     // console.log("Commander Alpha: commander.alpha@military.com / password123");
     // console.log("Logistics Alpha: logistics.alpha@military.com / password123");
   } catch (error) {
-    console.error("❌ Error seeding data:", error);
+    console.error(" Error seeding data:", error);
     throw error;
   }
 };

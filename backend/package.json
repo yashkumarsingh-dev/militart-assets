@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/app.js",
     "migrate": "npx sequelize-cli db:migrate",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "seed:prod": "node seed-data.js"
   },
   "keywords": [],
   "author": "",
