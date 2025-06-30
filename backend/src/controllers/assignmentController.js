@@ -35,7 +35,7 @@ const assignAsset = async (req, res) => {
     const existingAssignment = await Assignment.findOne({
       where: {
         asset_id,
-        expended_at: null,
+        expended_date: null,
       },
     });
 
