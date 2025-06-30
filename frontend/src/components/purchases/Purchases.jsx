@@ -28,6 +28,7 @@ const Purchases = () => {
   });
   const [adding, setAdding] = useState(false);
   const [addError, setAddError] = useState("");
+  const [assets, setAssets] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -79,7 +80,10 @@ const Purchases = () => {
       amount: "",
       approvedBy: "",
     });
-    setShowAddModal(true);
+    api.getAssets().then((data) => {
+      setAssets(data.assets || []);
+      setShowAddModal(true);
+    });
   };
   const closeAddModal = () => setShowAddModal(false);
   const handleAdd = async (e) => {
@@ -93,7 +97,7 @@ const Purchases = () => {
 
     setAdding(true);
     const purchaseData = {
-      asset_type: form.itemName,
+      asset_id: parseInt(form.itemName),
       quantity: parseInt(form.amount) || 1,
       base_id: 1, // Default base ID - you might want to make this dynamic
       date: form.requestedDate || new Date().toISOString(),
@@ -355,14 +359,20 @@ const Purchases = () => {
             <h2 className="text-xl font-semibold mb-4">Add Purchase</h2>
             {addError && <div className="text-red-600 mb-2">{addError}</div>}
             <form onSubmit={handleAdd} className="space-y-4">
-              <input
+              <select
                 name="itemName"
                 value={form.itemName}
                 onChange={handleFormChange}
                 required
-                placeholder="Item Name"
-                className="w-full border px-3 py-2 rounded"
-              />
+                className="w-full border px-3 py-2 rounded">
+                <option value="">Select Asset</option>
+                {assets.map((asset) => (
+                  <option key={asset.id} value={asset.id}>
+                    {asset.description || asset.name} (SN: {asset.serial_number}
+                    )
+                  </option>
+                ))}
+              </select>
               <input
                 name="requestedBy"
                 value={form.requestedBy}
