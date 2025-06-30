@@ -29,6 +29,7 @@ const createPurchase = async (req, res) => {
     const assets = [];
     for (let i = 0; i < quantity; i++) {
       const asset = await Asset.create({
+        name: asset_type,
         type: asset_type,
         description: `${asset_type} - Purchase ${purchase.id}`,
         serial_number: `${asset_type.toUpperCase()}-${Date.now()}-${i + 1}`,
