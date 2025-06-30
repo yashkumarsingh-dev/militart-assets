@@ -12,7 +12,13 @@ const seedData = async () => {
   try {
     // console.log("Starting database seeding...");
 
-    // Create bases
+    // Clear dependent tables first
+    await Transfer.destroy({ where: {}, truncate: true, cascade: true });
+    await Assignment.destroy({ where: {}, truncate: true, cascade: true });
+    await Asset.destroy({ where: {}, truncate: true, cascade: true });
+    await Purchase.destroy({ where: {}, truncate: true, cascade: true });
+    await User.destroy({ where: {}, truncate: true, cascade: true });
+    // Now clear bases
     await Base.destroy({ where: {}, truncate: true, cascade: true });
     const bases = await Base.bulkCreate([
       { name: "Alpha Base", location: "North Region" },
