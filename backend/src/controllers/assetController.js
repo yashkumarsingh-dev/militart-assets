@@ -46,7 +46,7 @@ const getAssets = async (req, res) => {
       assets.rows.map(async (asset) => {
         const activeAssignment = await Assignment.findOne({
           where: { asset_id: asset.id, expended_date: null },
-          include: [{ model: User }],
+          include: [{ model: User, as: "Personnel" }],
           order: [["assigned_at", "DESC"]],
         });
         let assignedTo = "-";
