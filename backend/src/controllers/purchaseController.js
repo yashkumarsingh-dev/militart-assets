@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 // Create new purchase
 const createPurchase = async (req, res) => {
   try {
-    const { asset_type, quantity, base_id, date } = req.body;
+    const { asset_type, asset_id, quantity, base_id, date } = req.body;
     const userRole = req.user.role;
     const userBaseId = req.user.base_id;
 
@@ -16,6 +16,7 @@ const createPurchase = async (req, res) => {
     // Create purchase record
     const purchase = await Purchase.create({
       asset_type,
+      asset_id,
       quantity,
       base_id,
       date: date || new Date(),

@@ -11,6 +11,7 @@ const Purchase = sequelize.define(
     status: { type: DataTypes.STRING, allowNull: true },
     approved_by: { type: DataTypes.STRING, allowNull: true },
     requested_by: { type: DataTypes.STRING, allowNull: true },
+    asset_id: { type: DataTypes.INTEGER, allowNull: false },
   },
   {
     tableName: "purchases",
