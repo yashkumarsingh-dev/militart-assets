@@ -472,11 +472,13 @@ const Transfers = () => {
                 required
                 className="w-full border px-3 py-2 rounded">
                 <option value="">From Base</option>
-                {bases.map((base) => (
-                  <option key={base.id} value={base.id}>
-                    {base.name}
-                  </option>
-                ))}
+                {bases
+                  .filter((base) => base.id !== parseInt(form.toBaseId))
+                  .map((base) => (
+                    <option key={base.id} value={base.id}>
+                      {base.name}
+                    </option>
+                  ))}
               </select>
               <select
                 name="toBaseId"
@@ -485,11 +487,13 @@ const Transfers = () => {
                 required
                 className="w-full border px-3 py-2 rounded">
                 <option value="">To Base</option>
-                {bases.map((base) => (
-                  <option key={base.id} value={base.id}>
-                    {base.name}
-                  </option>
-                ))}
+                {bases
+                  .filter((base) => base.id !== parseInt(form.fromBaseId))
+                  .map((base) => (
+                    <option key={base.id} value={base.id}>
+                      {base.name}
+                    </option>
+                  ))}
               </select>
               <input
                 name="transferredBy"
@@ -578,11 +582,13 @@ const Transfers = () => {
                 required
                 className="w-full border px-3 py-2 rounded">
                 <option value="">From Base</option>
-                {bases.map((base) => (
-                  <option key={base.id} value={base.id}>
-                    {base.name}
-                  </option>
-                ))}
+                {bases
+                  .filter((base) => base.id !== parseInt(form.toBaseId))
+                  .map((base) => (
+                    <option key={base.id} value={base.id}>
+                      {base.name}
+                    </option>
+                  ))}
               </select>
               <select
                 name="toBaseId"
@@ -591,11 +597,13 @@ const Transfers = () => {
                 required
                 className="w-full border px-3 py-2 rounded">
                 <option value="">To Base</option>
-                {bases.map((base) => (
-                  <option key={base.id} value={base.id}>
-                    {base.name}
-                  </option>
-                ))}
+                {bases
+                  .filter((base) => base.id !== parseInt(form.fromBaseId))
+                  .map((base) => (
+                    <option key={base.id} value={base.id}>
+                      {base.name}
+                    </option>
+                  ))}
               </select>
               <input
                 name="transferredBy"
