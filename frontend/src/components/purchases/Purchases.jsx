@@ -100,7 +100,7 @@ const Purchases = () => {
     }
 
 
-    
+
 
 
     setAdding(true);
