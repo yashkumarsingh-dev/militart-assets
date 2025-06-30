@@ -93,7 +93,7 @@ const Assignment = sequelize.define(
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     asset_id: { type: DataTypes.INTEGER, allowNull: false },
     personnel_id: { type: DataTypes.INTEGER, allowNull: false },
-    assigned_date: { type: DataTypes.DATE, allowNull: false },
+    assigned_at: { type: DataTypes.DATE, allowNull: false },
     date_returned: { type: DataTypes.DATE, allowNull: true },
     expended_date: { type: DataTypes.DATE, allowNull: true },
     assigned_by: { type: DataTypes.STRING, allowNull: true },

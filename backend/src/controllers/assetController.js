@@ -47,7 +47,7 @@ const getAssets = async (req, res) => {
         const activeAssignment = await Assignment.findOne({
           where: { asset_id: asset.id, expended_date: null },
           include: [{ model: User }],
-          order: [["assigned_date", "DESC"]],
+          order: [["assigned_at", "DESC"]],
         });
         let assignedTo = "-";
         let computedStatus = "available";

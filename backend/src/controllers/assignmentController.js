@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 // Assign asset to personnel
 const assignAsset = async (req, res) => {
   try {
-    const { asset_id, personnel_id, assigned_date } = req.body;
+    const { asset_id, personnel_id, assigned_at } = req.body;
     const userRole = req.user.role;
     const userBaseId = req.user.base_id;
 
@@ -35,7 +35,7 @@ const assignAsset = async (req, res) => {
     const existingAssignment = await Assignment.findOne({
       where: {
         asset_id,
-        expended_date: null,
+        expended_at: null,
       },
     });
 
@@ -47,7 +47,7 @@ const assignAsset = async (req, res) => {
     const assignment = await Assignment.create({
       asset_id,
       personnel_id,
-      assigned_date: assigned_date || new Date(),
+      assigned_at: assigned_at || new Date(),
       assigned_by: req.body.assigned_by || null,
     });
 
@@ -149,7 +149,7 @@ const getAssignments = async (req, res) => {
 
     // Date filters
     if (startDate && endDate) {
-      whereClause.assigned_date = {
+      whereClause.assigned_at = {
         [Op.between]: [new Date(startDate), new Date(endDate)],
       };
     }
@@ -183,7 +183,7 @@ const getAssignments = async (req, res) => {
     const assignments = await Assignment.findAndCountAll({
       where: whereClause,
       include: includeClause,
-      order: [["assigned_date", "DESC"]],
+      order: [["assigned_at", "DESC"]],
       limit: parseInt(limit),
       offset: parseInt(offset),
     });
@@ -253,7 +253,7 @@ const getAssetAssignments = async (req, res) => {
     const assignments = await Assignment.findAll({
       where: { asset_id },
       include: [{ model: User, as: "Personnel" }],
-      order: [["assigned_date", "DESC"]],
+      order: [["assigned_at", "DESC"]],
     });
 
     res.json({ assignments });
@@ -283,7 +283,7 @@ const getPersonnelAssignments = async (req, res) => {
     const assignments = await Assignment.findAll({
       where: { personnel_id },
       include: [{ model: Asset, as: "Asset" }],
-      order: [["assigned_date", "DESC"]],
+      order: [["assigned_at", "DESC"]],
     });
 
     res.json({ assignments });
@@ -297,7 +297,7 @@ const getPersonnelAssignments = async (req, res) => {
 const updateAssignment = async (req, res) => {
   try {
     const { id } = req.params;
-    const { assigned_date, expended_date } = req.body;
+    const { assigned_at, expended_date } = req.body;
     const userRole = req.user.role;
     const userBaseId = req.user.base_id;
 
@@ -329,7 +329,7 @@ const updateAssignment = async (req, res) => {
       asset_id: req.body.asset_id || assignment.asset_id,
       personnel_id: req.body.personnel_id || assignment.personnel_id,
       assigned_by: req.body.assigned_by || assignment.assigned_by,
-      assigned_date: assigned_date || assignment.assigned_date,
+      assigned_at: assigned_at || assignment.assigned_at,
       expended_date:
         typeof expended_date !== "undefined"
           ? expended_date

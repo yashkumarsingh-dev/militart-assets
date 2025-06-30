@@ -203,17 +203,17 @@ const seedData = async () => {
       {
         asset_id: assets[1].id,
         personnel_id: users[5].id,
-        assigned_date: new Date("2024-01-25"),
+        assigned_at: new Date("2024-01-25"),
       },
       {
         asset_id: assets[3].id,
         personnel_id: users[6].id,
-        assigned_date: new Date("2024-02-05"),
+        assigned_at: new Date("2024-02-05"),
       },
       {
         asset_id: assets[4].id,
         personnel_id: users[5].id,
-        assigned_date: new Date("2024-02-10"),
+        assigned_at: new Date("2024-02-10"),
       },
     ]);
     // console.log("✅ Assignments created:", assignments.length);

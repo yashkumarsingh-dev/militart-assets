@@ -165,7 +165,7 @@ const testAssignments = async () => {
   const newAssignment = {
     asset_id: 2,
     personnel_id: 6,
-    assigned_date: new Date().toISOString(),
+    assigned_at: new Date().toISOString(),
   };
   const assignAssetResult = await makeRequest(
     "POST",

@@ -119,7 +119,7 @@ const validateUpdateTransfer = [
 const validateCreateAssignment = [
   body("asset_id").isInt().withMessage("Asset ID must be an integer"),
   body("personnel_id").isInt().withMessage("Personnel ID must be an integer"),
-  body("assigned_date")
+  body("assigned_at")
     .optional()
     .isISO8601()
     .withMessage("Assigned date must be a valid ISO date"),

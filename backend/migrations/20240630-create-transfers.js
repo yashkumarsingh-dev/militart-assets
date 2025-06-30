@@ -47,6 +47,18 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      transferred_by: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      reason: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

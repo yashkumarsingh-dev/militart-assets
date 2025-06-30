@@ -27,6 +27,22 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      asset_type: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      approved_by: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      requested_by: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
