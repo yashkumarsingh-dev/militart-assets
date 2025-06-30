@@ -68,7 +68,8 @@ const Assignments = () => {
     });
   };
   const closeAddModal = () => setShowAddModal(false);
-  const handleAdd = () => {
+  const handleAdd = (e) => {
+    e.preventDefault();
     // Validate required fields
     if (!form.assetName || !form.assignedTo || !form.assignedBy) {
       alert("Please fill in all required fields");
@@ -79,7 +80,7 @@ const Assignments = () => {
     const assignmentData = {
       asset_id: parseInt(form.assetName),
       personnel_id: parseInt(form.assignedTo),
-      assigned_date: form.assignedDate || new Date().toISOString(),
+      assigned_at: form.assignedDate || new Date().toISOString(),
       assigned_by: parseInt(form.assignedBy),
     };
 
