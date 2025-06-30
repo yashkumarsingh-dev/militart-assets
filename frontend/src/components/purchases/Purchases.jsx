@@ -99,6 +99,8 @@ const Purchases = () => {
       return;
     }
 
+
+    
     setAdding(true);
     const selectedAsset = assets.find((a) => a.id === parseInt(form.itemName));
     const purchaseData = {
