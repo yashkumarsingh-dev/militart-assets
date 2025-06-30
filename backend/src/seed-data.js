@@ -13,6 +13,7 @@ const seedData = async () => {
     // console.log("Starting database seeding...");
 
     // Create bases
+    await Base.destroy({ where: {}, truncate: true, cascade: true });
     const bases = await Base.bulkCreate([
       { name: "Alpha Base", location: "North Region" },
       { name: "Bravo Base", location: "South Region" },
