@@ -100,8 +100,12 @@ const Purchases = () => {
     }
 
     setAdding(true);
+    const selectedAsset = assets.find((a) => a.id === parseInt(form.itemName));
     const purchaseData = {
       asset_id: parseInt(form.itemName),
+      asset_type: selectedAsset
+        ? selectedAsset.name || selectedAsset.type || selectedAsset.description
+        : "",
       quantity: parseInt(form.amount) || 1,
       base_id: 1, // Default base ID - you might want to make this dynamic
       date: form.requestedDate || new Date().toISOString(),
