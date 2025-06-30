@@ -29,6 +29,7 @@ const Purchases = () => {
   const [adding, setAdding] = useState(false);
   const [addError, setAddError] = useState("");
   const [assets, setAssets] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -80,10 +81,13 @@ const Purchases = () => {
       amount: "",
       approvedBy: "",
     });
-    api.getAssets().then((data) => {
-      setAssets(data.assets || []);
-      setShowAddModal(true);
-    });
+    Promise.all([api.getAssets(), api.getUsers()]).then(
+      ([assetsData, usersData]) => {
+        setAssets(assetsData.assets || []);
+        setUsers(usersData.users || []);
+        setShowAddModal(true);
+      }
+    );
   };
   const closeAddModal = () => setShowAddModal(false);
   const handleAdd = async (e) => {
@@ -101,9 +105,9 @@ const Purchases = () => {
       quantity: parseInt(form.amount) || 1,
       base_id: 1, // Default base ID - you might want to make this dynamic
       date: form.requestedDate || new Date().toISOString(),
-      requested_by: form.requestedBy,
+      requested_by: parseInt(form.requestedBy),
       status: form.status || "Pending",
-      approved_by: form.approvedBy || null,
+      approved_by: form.approvedBy ? parseInt(form.approvedBy) : null,
     };
 
     try {
@@ -373,14 +377,19 @@ const Purchases = () => {
                   </option>
                 ))}
               </select>
-              <input
+              <select
                 name="requestedBy"
                 value={form.requestedBy}
                 onChange={handleFormChange}
                 required
-                placeholder="Requested By"
-                className="w-full border px-3 py-2 rounded"
-              />
+                className="w-full border px-3 py-2 rounded">
+                <option value="">Select Requested By</option>
+                {users.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.name} ({u.role})
+                  </option>
+                ))}
+              </select>
               <input
                 name="requestedDate"
                 value={formatDateForInput(form.requestedDate)}
@@ -407,13 +416,18 @@ const Purchases = () => {
                 placeholder="Amount"
                 className="w-full border px-3 py-2 rounded"
               />
-              <input
+              <select
                 name="approvedBy"
                 value={form.approvedBy}
                 onChange={handleFormChange}
-                placeholder="Approved By"
-                className="w-full border px-3 py-2 rounded"
-              />
+                className="w-full border px-3 py-2 rounded">
+                <option value="">Select Approved By (optional)</option>
+                {users.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.name} ({u.role})
+                  </option>
+                ))}
+              </select>
               <div className="flex justify-end space-x-2">
                 <button
                   type="button"
