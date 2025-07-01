@@ -25,3 +25,16 @@ dist-ssr
 *.sqlite
 #env files
 .env
+
+# Sensitive or irrelevant backend files
+seed-data.js
+src/seed-data.js
+src/seed.js
+src/test-api.js
+src/test-server.js
+src/test-connection.js
+src/test-env.js
+src/test-db.js
+src/app-diagnostic.js
+src/sync-local.js
+database.sqlite
