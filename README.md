@@ -15,6 +15,132 @@ Military is a modern asset management system designed for organizations requirin
 
 ---
 
+### System Architecture Diagram
+
+```mermaid
+flowchart TD
+  subgraph Frontend
+    FE[React App]
+  end
+  subgraph Backend
+    BE[Node.js/Express API]
+  end
+  subgraph Database
+    DB[(PostgreSQL)]
+  end
+  FE -- REST API Calls --> BE
+  BE -- Sequelize ORM --> DB
+  FE -- Auth Token --> BE
+  BE -- Serves Static Files (prod) --> FE
+```
+
+### Entity-Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+  USERS ||--o{ ASSIGNMENTS : has
+  USERS ||--o{ LOGS : performs
+  BASES ||--o{ USERS : hosts
+  BASES ||--o{ ASSETS : contains
+  BASES ||--o{ PURCHASES : receives
+  BASES ||--o{ TRANSFERS : from_or_to
+  ASSETS ||--o{ ASSIGNMENTS : assigned
+  ASSETS ||--o{ TRANSFERS : transferred
+  ASSETS ||--o{ PURCHASES : purchased
+  ASSIGNMENTS ||--o{ LOGS : triggers
+  TRANSFERS ||--o{ LOGS : triggers
+  PURCHASES ||--o{ LOGS : triggers
+
+  USERS {
+    int id PK
+    string name
+    string email
+    string role
+    int base_id FK
+  }
+  BASES {
+    int id PK
+    string name
+    string location
+  }
+  ASSETS {
+    int id PK
+    string name
+    string type
+    string description
+    string serial_number
+    int base_id FK
+    string status
+  }
+  ASSIGNMENTS {
+    int id PK
+    int asset_id FK
+    int personnel_id FK
+    date assigned_at
+    date expended_date
+  }
+  PURCHASES {
+    int id PK
+    string asset_type
+    int quantity
+    int base_id FK
+    date date
+  }
+  TRANSFERS {
+    int id PK
+    int asset_id FK
+    int from_base_id FK
+    int to_base_id FK
+    int quantity
+    date date
+  }
+  LOGS {
+    int id PK
+    int user_id FK
+    string action
+    date timestamp
+    string details
+  }
+```
+
+### RBAC (Role-Based Access Control) Diagram
+
+```mermaid
+flowchart TB
+  Admin[Admin]
+  Commander[Base Commander]
+  Officer[Logistics Officer]
+  Guest[Guest/User]
+
+  Assets[Assets]
+  Assignments[Assignments]
+  Transfers[Transfers]
+  Purchases[Purchases]
+  Audit[Audit Logs]
+
+  Admin -- Full Access --> Assets
+  Admin -- Full Access --> Assignments
+  Admin -- Full Access --> Transfers
+  Admin -- Full Access --> Purchases
+  Admin -- Full Access --> Audit
+
+  Commander -- Manage (Own Base) --> Assets
+  Commander -- Manage (Own Base) --> Assignments
+  Commander -- View --> Transfers
+  Commander -- View --> Purchases
+  Commander -- View --> Audit
+
+  Officer -- Assign/Transfer --> Assets
+  Officer -- Create --> Assignments
+  Officer -- Create --> Transfers
+  Officer -- Create --> Purchases
+  Officer -- View --> Audit
+
+  Guest -- View (Limited) --> Assets
+```
+
+---
+
 ## 2. Technical Requirements
 
 - **Vite**: ^4.x
@@ -217,7 +343,7 @@ This project is licensed under the MIT License.
 - [React](https://react.dev/)
 - [Express.js](https://expressjs.com/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [Sequelize](https://sequelize.org/) 
+- [Sequelize](https://sequelize.org/)
 - All contributors and open-source libraries used in this project.
 
 ---
